@@ -38,7 +38,7 @@ jobs:
       run: nuget restore ${{env.SOLUTION_FILE_PATH}}
 
     - name: Add ConfuserEX2
-      working-directory: ${{env.GITHUB_WORKSPACE}}
+      working-directory: ./Source/
       run: dotnet add package Confuser.MSBuild --version 1.6.0
 
     - name: Build
