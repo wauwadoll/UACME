@@ -43,6 +43,14 @@ jobs:
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Optimization=MinSpace ${{env.SOLUTION_FILE_PATH}}
 
+    - name: Run UPX
+      uses: crazy-max/ghaction-upx@v3
+      with:
+        version: latest
+        files: |
+          ./Source/Akagi/output/Win32/Release/Akagi32.exe
+        args: -fq --best
+
     - name: Run AstralPE
       run: ./Source/Astral-PE.exe D:/a/UACME/UACME/Source/Akagi/output/Win32/Release/Akagi32.exe -o D:/a/UACME/UACME/Source/Akagi/output/Win32/Release/Akagi32-modified.exe
       
